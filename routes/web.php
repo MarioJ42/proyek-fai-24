@@ -176,3 +176,5 @@ Route::middleware(['auth'])->group(function () {
     // Logout
     Route::post('/auth/logout', [AuthController::class, "logoutPost"]);
 });
+
+// 
