@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $title = "Home";
 
-        return view("/home/index", compact("title"));
+        return view("home/index", compact("title"));
     }
 
     public function customers()
@@ -24,5 +24,16 @@ class HomeController extends Controller
         $customers = User::with("role")->get();
 
         return view("home/customers",  compact("title", "customers"));
+    }
+
+    public function supplierDashboard()
+    {
+        dd(auth()->user()->role->name);
+        $this->authorize('is_supplier'); 
+
+        $title = "Supplier Dashboard";
+        // $data = []; 
+
+        return view("home/supplier_dashboard", compact("title"));
     }
 }

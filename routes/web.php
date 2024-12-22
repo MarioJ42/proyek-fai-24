@@ -41,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get("/home", "index");
         Route::get("/home/customers", "customers");
+        Route::get('/home/suppliers', [HomeController::class, 'supplierDashboard'])->name('supplier.dashboard');
     });
 
     // profile
@@ -176,5 +177,3 @@ Route::middleware(['auth'])->group(function () {
     // Logout
     Route::post('/auth/logout', [AuthController::class, "logoutPost"]);
 });
-
-// 
