@@ -22,7 +22,7 @@
 @can('is_admin')
     @include('/partials/home/home_admin')
 @elsecan('is_supplier')
-    @include('/partials/home/home_suppliers')
+    @yield('content')
 @else
     @include('/partials/home/home_customers')
 @endcan
