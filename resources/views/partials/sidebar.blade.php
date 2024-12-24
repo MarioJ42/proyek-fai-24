@@ -24,8 +24,8 @@
                 </a>
                 {{-- <div class="sb-sidenav-menu-heading">Interface</div> --}}
                 <a class="nav-link" href="/product">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-database"></i></div>
-                    CRUD
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
+                    Add Items
                 </a>
                 <a class="nav-link" href="/product">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
