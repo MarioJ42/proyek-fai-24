@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Failed;
-use Illuminate\Support\Facades\{Auth, Storage, Validator};
+use Illuminate\Support\Facades\{Auth, Http, Storage, Validator};
 use App\Models\{Order, Status, Product, Role, Transaction, User};
 
 class OrderController extends Controller
@@ -13,8 +13,9 @@ class OrderController extends Controller
     {
         $title = "Make Order";
         $product = $product;
+        $provinsi = Http::get('http://localhost:5000/list_provinsi')->object();
 
-        return view("/order/make_order", compact("title", "product"));
+        return view("/order/make_order", compact("title", "product", "provinsi"));
     }
 
 
@@ -45,30 +46,33 @@ class OrderController extends Controller
         }
 
         $validatedData = $request->validate($rules, $message);
-
         try {
-            $data = [
-                "product_id" => $product->id,
-                "user_id" => auth()->user()->id,
-                "quantity" => $validatedData["quantity"],
-                "address" => $validatedData["address"],
-                "shipping_address" => $validatedData["shipping_address"],
-                "total_price" => $validatedData["total_price"],
-                "payment_id" => $validatedData["payment_method"],
-                "note_id" => ($validatedData["payment_method"] == 1) ? 2 : 1,
-                "status_id" => 2,
-                "transaction_doc" => ($validatedData["payment_method"] == 1) ? env("IMAGE_PROOF") : null,
-                "is_done" => 0,
-                "coupon_used" => $validatedData["coupon_used"]
-            ];
-
-            if ($validatedData["payment_method"] == 1) {
-                $data['bank_id'] = $validatedData["bank_id"];
+            if($validatedData){
+                $data = [
+                    "product_id" => $product->id,
+                    "user_id" => auth()->user()->id,
+                    "quantity" => $validatedData["quantity"],
+                    "address" => $validatedData["address"],
+                    "shipping_address" => $validatedData["shipping_address"],
+                    "total_price" => $validatedData["total_price"],
+                    "payment_id" => $validatedData["payment_method"],
+                    "note_id" => ($validatedData["payment_method"] == 1) ? 2 : 1,
+                    "status_id" => 2,
+                    "transaction_doc" => ($validatedData["payment_method"] == 1) ? env("IMAGE_PROOF") : null,
+                    "is_done" => 0,
+                    "coupon_used" => $validatedData["coupon_used"]
+                ];
+    
+                if ($validatedData["payment_method"] == 1) {
+                    $data['bank_id'] = $validatedData["bank_id"];
+                }
+    
+                Order::create($data);
             }
-
-            Order::create($data);
+            else{
+                myFlasherBuilder(message: "Gagal Buat Order", success: true);
+            }
             $message = "Orders has been created!";
-
             myFlasherBuilder(message: $message, success: true);
             return redirect("/order/order_data");
         } catch (\Illuminate\Database\QueryException $exception) {
@@ -155,12 +159,12 @@ class OrderController extends Controller
 
     public function rejectOrder(Request $request, Order $order, Product $product)
     {
-        if ($request->refusal_reason == "") {
-            $message = "Refusal reason cannot be empty!";
+        // if ($request->refusal_reason == "") {
+        //     $message = "Refusal reason cannot be empty!";
 
-            myFlasherBuilder(message: $message, failed: true);
-            return redirect("/order/order_data");
-        }
+        //     myFlasherBuilder(message: $message, failed: true);
+        //     return redirect("/order/order_data");
+        // }
 
         if ($order->status_id == 4) {
             $message = "Order status is already succeded by admin";
@@ -240,12 +244,12 @@ class OrderController extends Controller
             return redirect("/order/order_data");
         }
 
-        if ($order->transaction_doc == env("IMAGE_PROOF")) {
-            $message = "No transfer proof uploaded!";
-            myFlasherBuilder(message: $message, failed: true);
+        // if ($order->transaction_doc == env("IMAGE_PROOF")) {
+        //     $message = "No transfer proof uploaded!";
+        //     myFlasherBuilder(message: $message, failed: true);
 
-            return redirect("/order/order_data");
-        }
+        //     return redirect("/order/order_data");
+        // }
 
         if ($product->stock - $order->quantity < 0) {
             $message = "Quantity order is out of stock";

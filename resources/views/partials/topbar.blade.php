@@ -15,7 +15,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
         aria-expanded="false"><img width="40px" height="40px" class="img-profile rounded-circle"
-          src="{{ asset('storage/' . auth()->user()->image) }}"></a>
+          src="{{ asset('storage/app/public/' . auth()->user()->image) }}"></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
         <li><a class="dropdown-item" href="/profile/my_profile"><i class="fas fa-user-alt fa-sm fa-fw text-gray-400"
               style="margin-right: 10px;"></i>My Profile</a></li>

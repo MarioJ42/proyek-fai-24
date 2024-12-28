@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController, HomeController, OrderController, PointController, ReviewController, ProductController, ProfileController, RajaOngkirController, TransactionController};
+use App\Http\Controllers\{AuthController, HomeController, OrderController, PointController, ReviewController, ProductController, ProfileController, ProvinsiController, RajaOngkirController, TransactionController};
 
 /*
 |--------------------------------------------------------------------------
@@ -79,13 +79,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get("/order/edit_order/{order}", "editOrderGet")->can("edit_order", "order");
         Route::post("/order/edit_order/{order}", "editOrderPost")->can("edit_order", "order");
         Route::get("/order/delete_proof/{order}", "deleteProof")->can("delete_proof", "order");
-        Route::post("/order/cancel_order/{order}", "cancelOrder")->can("cancel_order", "order");
+        Route::get("/order/cancel_order/{order}", "cancelOrder")->can("cancel_order", "order");
         Route::post("/order/upload_proof/{order}", "uploadProof")->can("upload_proof", "order");
 
         // admin only
-        Route::post("/order/reject_order/{order}/{product}", "rejectOrder")->can("reject_order", App\Models\Order::class);
-        Route::post("/order/end_order/{order}/{product}", "endOrder")->can("end_order", App\Models\Order::class);
-        Route::post("/order/approve_order/{order}/{product}", "approveOrder")->can("approve_order", App\Models\Order::class);
+        Route::get("/order/reject_order/{order}/{product}", "rejectOrder")->can("reject_order", App\Models\Order::class);
+        Route::get("/order/end_order/{order}/{product}", "endOrder")->can("end_order", App\Models\Order::class);
+        Route::get("/order/approve_order/{order}/{product}", "approveOrder")->can("approve_order", App\Models\Order::class);
     });
 
     // Ongkir
