@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,8 +13,20 @@ class ProductController extends Controller
     {
         $title = "Product";
         $product = Product::all();
-
         return view('/product/index', compact("title", "product"));
+        // $client = new Client();
+
+        // try {
+        //     $response = $client->get('http://localhost:5000/list_products');
+        //     $statusCode = $response->getStatusCode(); // 200
+        //     $body = $response->getBody()->getContents(); // JSON data
+
+        //     $product = json_decode($body, false); 
+
+        //     return view('/product/index', compact("title", "product"));
+        // } catch (\Exception $e) {
+        //     return response()->json(['error' => $e->getMessage()], 500);
+        // }
     }
 
 

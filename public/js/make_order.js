@@ -176,7 +176,7 @@ function getCity(province_id) {
 }
 
 function setOngkir({
-    origin = 42, // banyuwangi
+    origin = 444,
     destination,
     quantity,
     courier = "jne",
@@ -195,7 +195,6 @@ function setOngkir({
 
     setVisible("#loading_transaction", true);
     setVisible("#transaction", false);
-    console.log("jalan dahal");
 
     $.ajax({
         url: `/shipping/cost/${origin}/${destination}/${quantity}/${courier}`,
@@ -215,7 +214,6 @@ function setOngkir({
 
             setVisible("#transaction", true);
             setVisible("#loading_transaction", false);
-            console.log("end");
         },
     });
 }

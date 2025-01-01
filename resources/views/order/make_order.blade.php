@@ -115,7 +115,7 @@
         </div>
 
         <!-- Online Banking -->
-        <div class="accordion-item mb-3 ">
+        {{-- <div class="accordion-item mb-3 ">
           <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">
             <div class="form-check w-100 collapsed">
               <input class="form-check-input" type="radio" name="payment_method" id="online_bank"
@@ -326,7 +326,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         {{-- COD --}}
         <div class="accordion-item mb-3 border">
           <h2 class="h5 px-4 py-3 accordion-header d-flex justify-content-between align-items-center">

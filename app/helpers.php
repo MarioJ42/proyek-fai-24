@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Session;
+use Spatie\FlareClient\Http\Client;
 
 function myFlasherBuilder($message, $success = false, $failed = false)
 {
