@@ -1,11 +1,23 @@
 @extends('home.index')
 
 @section('content')
+
 @if(session('success'))
 <div class="alert alert-success mt-4">
     {{ session('success') }}
 </div>
 @endif
+
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul class="mb-0">
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div class="container mt-4">
     <h2 class="mb-4">Input Produk Biji Kopi</h2>
     <form action="{{ route('supplier.storeProduct') }}" method="POST" enctype="multipart/form-data">
@@ -15,7 +27,7 @@
             <label for="product_name" class="form-label">Nama Produk</label>
             <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Masukkan nama produk" required>
         </div>
-        
+
         <!-- Orientation -->
         <div class="mb-3">
             <label for="orientation" class="form-label">Orientation</label>
@@ -27,7 +39,7 @@
             <label for="description" class="form-label">Deskripsi Produk</label>
             <textarea name="description" id="description" class="form-control" rows="5" placeholder="Masukkan deskripsi produk" required></textarea>
         </div>
-        
+
         <!-- Harga -->
         <div class="mb-3">
             <label for="price" class="form-label">Harga (Rp)</label>
