@@ -1,4 +1,4 @@
-@extends('home.index')
+{{-- @extends('home.index')
 
 @section('content')
 <section id="hero">
@@ -99,4 +99,62 @@
     </section>
 </main>
 
+@endsection --}}
+
+@extends('layouts.main')
+
+@section('content')
+<div class="container mt-4">
+    <h2 class="mb-4">Dashboard Supplier</h2>
+
+    <!-- Pesan Sukses -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    <!-- Tabel Produk -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Diskon (%)</th>
+                    <th>Gambar</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($products as $product)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $product->product_name }}</td>
+                    <td>Rp{{ number_format($product->price, 0, ',', '.') }}</td>
+                    <td>{{ $product->stock }}</td>
+                    <td>{{ $product->discount ?? '0' }}</td>
+                    <td>
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk" class="img-thumbnail" style="width: 100px;">
+                    </td>
+                    <td>
+                        <!-- Tombol Edit -->
+                        <a href="" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="7" class="text-center">Belum ada produk yang diinputkan.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection
+
+{{-- {{ route('supplier.editProduct', $product->id) }} --}}

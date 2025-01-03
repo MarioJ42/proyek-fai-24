@@ -18,12 +18,12 @@
 
             @elsecan("is_supplier")
                 <div class="sb-sidenav-menu-heading">Supplier</div>
-                <a class="nav-link" href="/home">
+                <a class="nav-link" href="/home/suppliers">
                     <div class="sb-nav-link-icon"><i class="fas fa-fw fa-home-alt"></i></i></div>
                     Dashboard
                 </a>
                 {{-- <div class="sb-sidenav-menu-heading">Interface</div> --}}
-                <a class="nav-link" href="/product">
+                <a class="nav-link" href="{{ route('supplier.createProduct') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                     Add Items
                 </a>
