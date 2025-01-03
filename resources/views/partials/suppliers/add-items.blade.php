@@ -1,6 +1,11 @@
 @extends('home.index')
 
 @section('content')
+@if(session('success'))
+<div class="alert alert-success mt-4">
+    {{ session('success') }}
+</div>
+@endif
 <div class="container mt-4">
     <h2 class="mb-4">Input Produk Biji Kopi</h2>
     <form action="{{ route('supplier.storeProduct') }}" method="POST" enctype="multipart/form-data">
@@ -48,7 +53,7 @@
         </div>
 
         <!-- Tombol Submit -->
-        <button type="submit" class="btn btn-primary">Simpan Produk</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #a77057; border: none">Simpan Produk</button>
     </form>
 </div>
 @endsection
