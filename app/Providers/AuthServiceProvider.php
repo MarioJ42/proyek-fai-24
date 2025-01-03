@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\{Order, Product, Review, User};
 use App\Policies\{OrderPolicy, ProductPolicy, ReviewPolicy, PointPolicy};
@@ -32,6 +32,20 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        // Define Gates
+        Gate::define('is_admin', function ($user) {
+            return $user->role->name === 'admin';
+        });
+
+        Gate::define('is_customer', function ($user) {
+            return $user->role->name === 'customer';
+        });
+
+        Gate::define('is_supplier', function ($user) {
+            return $user->role->name === 'supplier';
+        });
         //
     }
+    
 }

@@ -23,13 +23,22 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
+
         if (Auth::attempt($credentials)) {
+            $user = User::where('email', $request->email)->first();
+            session(['user' => $user]);
+            // dd($user);
             $request->session()->regenerate();
             $message = "Login success";
 
             myFlasherBuilder(message: $message, success: true);
+            // dd($request->session()->all());
+            if ($user->role_id == 3){
+                return redirect('/home/suppliers');
+            }
             return redirect('/home');
         }
+        
 
         $message = "Wrong credential";
 
