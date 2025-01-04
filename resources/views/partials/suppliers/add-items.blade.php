@@ -28,12 +28,6 @@
             <input type="text" name="product_name" id="product_name" class="form-control" placeholder="Masukkan nama produk" required>
         </div>
 
-        <!-- Orientation -->
-        <div class="mb-3">
-            <label for="orientation" class="form-label">Orientation</label>
-            <textarea name="orientation" id="orientation" class="form-control" rows="3" placeholder="Masukkan orientation produk" required></textarea>
-        </div>
-
         <!-- Deskripsi -->
         <div class="mb-3">
             <label for="description" class="form-label">Deskripsi Produk</label>
@@ -50,12 +44,6 @@
         <div class="mb-3">
             <label for="stock" class="form-label">Stok</label>
             <input type="number" name="stock" id="stock" class="form-control" placeholder="Masukkan jumlah stok" required>
-        </div>
-
-        <!-- Diskon -->
-        <div class="mb-3">
-            <label for="discount" class="form-label">Diskon (%)</label>
-            <input type="number" name="discount" id="discount" class="form-control" placeholder="Masukkan diskon (opsional)">
         </div>
 
         <!-- Gambar Produk -->

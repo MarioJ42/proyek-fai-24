@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductSupplier;
 use Illuminate\Http\Request;
 
 class SupplierProductController extends Controller
@@ -16,7 +17,7 @@ class SupplierProductController extends Controller
     {
         $title = "Supplier's Home";
         // Ambil semua produk milik supplier yang sedang login
-        $products = Product::where('id_supplier', auth()->id())->get();
+        $products = ProductSupplier::where('id_supplier', auth()->id())->get();
         // dd($products);
 
         // Kirim data produk ke view
@@ -45,7 +46,6 @@ class SupplierProductController extends Controller
         // Validasi data
         $request->validate([
             'product_name' => 'required|string|max:255',
-            'orientation' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:1',
@@ -57,10 +57,9 @@ class SupplierProductController extends Controller
         $imagePath = $request->file('image')->store('product', 'public');
 
         // Simpan data ke database
-        Product::create([
+        ProductSupplier::create([
             'id_supplier' => auth()->id(), // ID supplier dari user yang login
             'product_name' => $request->product_name,
-            'orientation' => $request->orientation,
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
