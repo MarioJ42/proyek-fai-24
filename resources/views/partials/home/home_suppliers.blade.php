@@ -123,7 +123,6 @@
                     <th>Nama Produk</th>
                     <th>Harga</th>
                     <th>Stok</th>
-                    <th>Diskon (%)</th>
                     <th>Gambar</th>
                     <th>Aksi</th>
                 </tr>
