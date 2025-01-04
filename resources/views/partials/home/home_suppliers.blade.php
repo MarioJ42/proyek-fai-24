@@ -17,9 +17,9 @@
             </div>
             <div class="col-md-6 order-md-2 mt-5 mt-lg-0 pt-5 pt-lg-0 d-none d-md-block hero-img" data-aos="fade-left">
                 <img src="{{ asset('storage/home/coffee.jpg') }}" class="img-fluid" alt="Coffee">
-            </div>
-        </div>
-    </div>
+</div>
+</div>
+</div>
 
 </section>
 
@@ -135,8 +135,34 @@
                     <td>Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                     <td>{{ $product->stock }}</td>
                     <td>
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk" class="img-thumbnail" style="width: 100px;">
+                        <!-- Thumbnail -->
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk" class="img-thumbnail"
+                            style="width: 100px; cursor: pointer;" data-bs-toggle="modal"
+                            data-bs-target="#imageModal-{{ $product->id }}">
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="imageModal-{{ $product->id }}" tabindex="-1"
+                            aria-labelledby="imageModalLabel-{{ $product->id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl">
+                                <!-- Class modal-xl untuk ukuran besar -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="imageModalLabel-{{ $product->id }}">Gambar Produk
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <!-- Fullscreen Image -->
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk Full"
+                                            class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
+
+
                     <td>
                         <!-- Tombol Edit -->
                         <a href="" class="btn btn-warning btn-sm">
