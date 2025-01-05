@@ -22,6 +22,7 @@
                 $table->integer('stock');
                 $table->string('image');
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
  
