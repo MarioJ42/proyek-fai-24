@@ -51,7 +51,7 @@ class UserSeeder extends Seeder
             "fullname" => "Squidy",
             "username" => "goodman",
             "email" => "a@gmail.com",
-            "password" => Hash::make("aaaa"),
+            "password" => Hash::make("aaaa"), 
             "image" => env("IMAGE_PROFILE"),
             "phone" => "019292823382",
             "gender" => "M",

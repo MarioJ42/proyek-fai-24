@@ -181,6 +181,17 @@ Route::middleware(['auth'])->group(function () {
 
 // Supplier
 Route::middleware(['auth', 'can:is_supplier'])->group(function () {
-    Route::get('/home/suppliers/create-product', [SupplierProductController::class, 'create'])->name('supplier.createProduct');
-    Route::post('/home/suppliers/store-product', [SupplierProductController::class, 'store'])->name('supplier.storeProduct');
+    Route::prefix('home/suppliers')->group(function () {
+        Route::get('/add-product', [SupplierProductController::class, 'create'])->name('supplier.createProduct');
+        Route::post('/store-product', [SupplierProductController::class, 'store'])->name('supplier.storeProduct');
+    
+        // Edit
+        Route::get('/products/{id}/edit', [SupplierProductController::class, 'edit'])->name('supplier.editProduct');
+        Route::put('/products/{id}', [SupplierProductController::class, 'update'])->name('supplier.updateProduct');
+
+        // Delete
+        Route::delete('/products/delete/{id}', [SupplierProductController::class, 'destroy'])->name('supplier.deleteProduct');
+
+        
+    });
 });
