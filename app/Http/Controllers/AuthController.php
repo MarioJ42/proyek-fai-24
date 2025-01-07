@@ -24,10 +24,22 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            // $request->session()->regenerate();
+            // $message = "Login success";
+
+            // myFlasherBuilder(message: $message, success: true);
+            // return redirect('/home');
+            $user = User::where('email', $request->email)->first();
+            session(['user' => $user]);
+            // dd($user);
             $request->session()->regenerate();
             $message = "Login success";
 
             myFlasherBuilder(message: $message, success: true);
+            // dd($request->session()->all());
+            if ($user->role_id == 3){
+                return redirect('/home/suppliers');
+            }
             return redirect('/home');
         }
 

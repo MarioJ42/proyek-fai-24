@@ -20,8 +20,10 @@
 </div>
 
 @can('is_admin')
-@include('/partials/home/home_admin')
+    @include('/partials/home/home_admin')
+@elsecan('is_supplier')
+    @yield('content')
 @else
-@include('/partials/home/home_customers')
+    @include('/partials/home/home_customers')
 @endcan
 @endsection
