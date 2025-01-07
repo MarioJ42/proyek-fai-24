@@ -2,8 +2,20 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AuthController, HomeController, OrderController, PointController, ReviewController, ProductController, ProfileController, RajaOngkirController, TransactionController};
-use App\Http\Controllers\SupplierProductController;
+use App\Http\Controllers\{
+    AuthController, 
+    HomeController, 
+    OrderController, 
+    PointController, 
+    ReviewController, 
+    ProductController, 
+    ProfileController, 
+    ProvinsiController, 
+    RajaOngkirController, 
+    TransactionController, 
+    SupplierProductController
+};
+
 
 /*
 |--------------------------------------------------------------------------
