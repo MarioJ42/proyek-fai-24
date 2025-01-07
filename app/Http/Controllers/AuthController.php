@@ -29,6 +29,7 @@ class AuthController extends Controller
 
             // myFlasherBuilder(message: $message, success: true);
             // return redirect('/home');
+            
             $user = User::where('email', $request->email)->first();
             session(['user' => $user]);
             // dd($user);

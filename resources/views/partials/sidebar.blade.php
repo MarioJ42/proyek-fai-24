@@ -2,27 +2,26 @@
     <div class="sb-sidenav-menu">
         <div class="nav">
             @can("is_admin")
-            <div class="sb-sidenav-menu-heading">Administrator</div>
-            <a class="nav-link" href="/home">
-                <div class="sb-nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
-                Dashboard
-            </a>
-            <a class="nav-link" href="/home/customers">
-                <div class="sb-nav-link-icon"><i class="fas fa-fw fa-solid fa-users"></i></div>
-                Customers
-            </a>
-            <a class="nav-link" href="/transaction">
-                <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
-                Transaksi
-            </a>
+                <div class="sb-sidenav-menu-heading">Administrator</div>
+                <a class="nav-link" href="/home">
+                    <div class="sb-nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
+                    Dashboard
+                </a>
+                <a class="nav-link" href="/home/customers">
+                    <div class="sb-nav-link-icon"><i class="fas fa-fw fa-solid fa-users"></i></div>
+                    Customers
+                </a>
+                <a class="nav-link" href="/transaction">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
+                    Transaksi
+                </a>
 
-            @elsecan("is_supplier")
+            {{-- @elsecan("is_supplier")
                 <div class="sb-sidenav-menu-heading">Supplier</div>
                 <a class="nav-link" href="/home/suppliers">
                     <div class="sb-nav-link-icon"><i class="fas fa-fw fa-home-alt"></i></i></div>
                     Dashboard
                 </a>
-                {{-- <div class="sb-sidenav-menu-heading">Interface</div> --}}
                 <a class="nav-link" href="{{ route('supplier.createProduct') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                     Add Items
@@ -30,7 +29,7 @@
                 <a class="nav-link" href="/product">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                     History
-                </a>
+                </a> --}}
             @else
                 <div class="sb-sidenav-menu-heading">Customer</div>
                 <a class="nav-link" href="/home">
