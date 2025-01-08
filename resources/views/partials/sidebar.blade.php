@@ -11,6 +11,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-fw fa-solid fa-users"></i></div>
                     Customers
                 </a>
+                <a class="nav-link" href="{{ route('admin.suppliers') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
+                    Suppliers
+                </a>
                 <a class="nav-link" href="/transaction">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
                     Transaksi

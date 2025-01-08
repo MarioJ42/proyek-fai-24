@@ -26,6 +26,16 @@ class HomeController extends Controller
         return view("home/customers",  compact("title", "customers"));
     }
 
+    public function suppliers()
+    {
+        // Ambil semua pengguna dengan role supplier
+        $suppliers = User::whereHas('role', function ($query) {
+            $query->where('role_name', 'supplier');
+        })->get();
+
+        return view('partials.admin.supplier_list', compact('suppliers'));
+    }
+
     public function supplierDashboard()
     {
         // dd(auth()->user()->role->name);

@@ -195,3 +195,9 @@ Route::middleware(['auth', 'can:is_supplier'])->group(function () {
         
     });
 });
+
+Route::middleware(['auth', 'can:is_admin'])->group(function () {
+    Route::get('/admin/suppliers', [HomeController::class, 'suppliers'])->name('admin.suppliers');
+    // Route::get('/admin/suppliers/{id}/products', [HomeController::class, 'supplierProducts'])->name('admin.supplier.products');
+    // Route::post('/admin/suppliers/products/{id}/purchase', [HomeController::class, 'purchaseProduct'])->name('admin.purchaseProduct');
+});
