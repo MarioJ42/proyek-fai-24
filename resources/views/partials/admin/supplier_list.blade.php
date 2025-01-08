@@ -15,12 +15,10 @@
 @endphp
 <div class="container-fluid mt-4 px-3">
 
-    @include('/partials/breadcumb')
-
     <div class="card mb-4">
         <div class="card-header">
-            <i class="fas fa-fw fa-solid fa-users me-1"></i>
-            Customers
+            <i class="fa-solid fa-truck"></i>
+            Suppliers
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
