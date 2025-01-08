@@ -2,6 +2,28 @@
 
 @push('css-dependencies')
 <link rel="stylesheet" type="text/css" href="/css/home.css" />
+    @can('is_admin')
+        <style>
+            #timezone-clocks {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                background-color: #343a40; /* Dark background */
+                color: white;
+                text-align: center;
+                padding: 10px;
+                font-size: 16px;
+                z-index: 1000; /* Ensure it's above other content */
+                box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for effect */
+                display: flex;
+                justify-content: space-evenly;
+            }
+        
+            .timezone-clock {
+                font-family: 'Courier New', Courier, monospace;
+            }
+        </style>
+    @endcan
 @endpush
 
 @can('is_admin')

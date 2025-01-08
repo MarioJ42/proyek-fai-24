@@ -46,14 +46,14 @@ class ProfileController extends Controller
         }
 
         $validatedData = $request->validate($rules);
-
+        // dd($request);
         try {
             if ($request->file("image")) {
                 if ($request->oldImage != env("IMAGE_PROFILE")) {
                     Storage::delete($request->oldImage);
                 }
 
-                $validatedData["image"] = $request->file("image")->store("profile");
+                $validatedData["image"] = $request->file("image")->store("profile/".$request->username);
             }
 
             $user->fill($validatedData);

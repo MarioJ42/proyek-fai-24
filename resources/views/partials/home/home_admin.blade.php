@@ -61,4 +61,27 @@
             </div>
         </div>
     </div>
+    <!-- Embedded Google Maps -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-map-marker-alt me-1"></i>
+                    Google Maps
+                </div>
+                <div class="card-body">
+                    <iframe 
+                        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDO9A55dxTIUtuQd5L0YI-jr8upZ7QCv3g&center=-7.291219041251975, 112.75862004747962&zoom=18&maptype=satellite" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>                
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+

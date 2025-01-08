@@ -160,15 +160,13 @@ function setCity() {
 function getCity(province_id) {
     var op = $("#city");
 
-    $.getJSON("/shipping/city/" + province_id, function (data) {
+    $.getJSON("http://localhost:5000/list_kota/" + province_id, function (data) {
         $.each(data, function (i, field) {
             op.append(
                 '<option value="' +
-                    field.city_id +
+                    field.kode_kota +
                     '">' +
-                    field.type +
-                    " " +
-                    field.city_name +
+                    field.nama_kota +
                     "</option>"
             );
         });
