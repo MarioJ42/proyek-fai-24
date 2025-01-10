@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get("/home", "index");
         Route::get("/home/customers", "customers");
         Route::get('/home/suppliers', [SupplierProductController::class, 'index'])->name('supplier.dashboard');
+        Route::get('/home/add-suppliers', [HomeController::class, 'showSupplierPage'])->name('admin.addSupplierForm');
+        Route::post('/home/add-suppliers/add', [AuthController::class, 'addSupplier'])->name('admin.addSupplier');
     });
 
     // profile

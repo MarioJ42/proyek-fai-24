@@ -12,7 +12,27 @@
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
   @include('/partials/main_css')
   @stack('css-dependencies')
+  
 </head>
+<style>
+  #timezone-clocks {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.timezone-clock {
+    font-family: 'Courier New', Courier, monospace;
+}
+</style>
 
 <style>
   #timezone-clocks {
