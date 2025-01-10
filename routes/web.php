@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{AuthController, HomeController, OrderController, PointController, ReviewController, ProductController, ProfileController, ProvinsiController, RajaOngkirController, TransactionController};
+use App\Http\Controllers\SupplierProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get("/home", "index");
         Route::get("/home/customers", "customers");
+        Route::get('/home/suppliers', [SupplierProductController::class, 'index'])->name('supplier.dashboard');
     });
 
     // profile
@@ -175,4 +177,21 @@ Route::middleware(['auth'])->group(function () {
 
     // Logout
     Route::post('/auth/logout', [AuthController::class, "logoutPost"]);
+});
+
+// Supplier
+Route::middleware(['auth', 'can:is_supplier'])->group(function () {
+    Route::prefix('home/suppliers')->group(function () {
+        Route::get('/add-product', [SupplierProductController::class, 'create'])->name('supplier.createProduct');
+        Route::post('/store-product', [SupplierProductController::class, 'store'])->name('supplier.storeProduct');
+    
+        // Edit
+        Route::get('/products/{id}/edit', [SupplierProductController::class, 'edit'])->name('supplier.editProduct');
+        Route::put('/products/{id}', [SupplierProductController::class, 'update'])->name('supplier.updateProduct');
+
+        // Delete
+        Route::delete('/products/delete/{id}', [SupplierProductController::class, 'destroy'])->name('supplier.deleteProduct');
+
+        
+    });
 });

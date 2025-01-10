@@ -89,9 +89,6 @@
               <div class="form-group col-7">
                 <select class="form-control  @error('province') is-invalid @enderror" id="province" name="province">
                   <option value="0" selected="selected">Select Province</option>
-                  @foreach ($provinsi as $item)
-                    <option value="{{$item->kode_provinsi}}">{{$item->nama_provinsi}}</option>
-                  @endforeach
                 </select>
                 @error('province')
                 <div class="text-danger">{{ $message }}</div>

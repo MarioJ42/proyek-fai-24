@@ -34,6 +34,25 @@
 }
 </style>
 
+<style>
+  #timezone-clocks {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-evenly;
+}
+.timezone-clock {
+    font-family: 'Courier New', Courier, monospace;
+}
+</style>
+
 <body class="sb-nav-fixed">
   <div id="loading" style="display: none"></div>
   {{-- topbar --}}
@@ -89,7 +108,6 @@
                     const data = await response.json();
                     const currentTime = new Date(data.datetime);
                     const offset = data.utc_offset;
-
                     const clockElement = document.getElementById(elementId);
                     clockElement.dataset.initialTime = currentTime.getTime();
                     clockElement.dataset.offset = offset;
@@ -98,30 +116,24 @@
                 console.error("Error fetching time:", error);
             }
         }
-
         function updateClocks() {
             const clockElements = document.querySelectorAll("[id^=clock-]");
             clockElements.forEach((clockElement) => {
                 const initialTime = parseInt(clockElement.dataset.initialTime, 10);
                 const offset = clockElement.dataset.offset;
-
                 if (!initialTime || !offset) return;
-
                 const offsetInMs = parseOffsetToMs(offset);
                 const now = new Date().getTime();
                 const adjustedTime = new Date(initialTime + offsetInMs + (now - initialTime));
-
                 const formattedTime = adjustedTime.toLocaleTimeString("en-US", { hour12: false });
                 clockElement.textContent = formattedTime;
             });
         }
-
         function parseOffsetToMs(offset) {
             const sign = offset.startsWith("-") ? -1 : 1;
             const [hours, minutes] = offset.slice(1).split(":").map(Number);
             return sign * ((hours * 60 + minutes) * 60 * 1000);
         }
-
         async function initializeClocks() {
             await fetchTimeWithOffset("Asia/Jakarta", "clock-jakarta");
             await fetchTimeWithOffset("America/New_York", "clock-newyork");
@@ -129,10 +141,9 @@
             updateClocks();
             setInterval(updateClocks, 1000);
         }
-
         initializeClocks();
     </script>
-    @endcan
+  @endcan
 </body>
 
 </html>

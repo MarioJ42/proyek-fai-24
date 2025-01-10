@@ -61,7 +61,6 @@
             </div>
         </div>
     </div>
-    <!-- Embedded Google Maps -->
     <div class="row">
         <div class="col-xl-12">
             <div class="card mb-4">
@@ -83,5 +82,3 @@
         </div>
     </div>
 </div>
-
-

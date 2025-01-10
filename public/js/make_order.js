@@ -160,13 +160,15 @@ function setCity() {
 function getCity(province_id) {
     var op = $("#city");
 
-    $.getJSON("http://localhost:5000/list_kota/" + province_id, function (data) {
+    $.getJSON("/shipping/city/" + province_id, function (data) {
         $.each(data, function (i, field) {
             op.append(
                 '<option value="' +
-                    field.kode_kota +
+                    field.city_id +
                     '">' +
-                    field.nama_kota +
+                    field.type +
+                    " " +
+                    field.city_name +
                     "</option>"
             );
         });
@@ -174,7 +176,7 @@ function getCity(province_id) {
 }
 
 function setOngkir({
-    origin = 42, // banyuwangi
+    origin = 444,
     destination,
     quantity,
     courier = "jne",
@@ -193,7 +195,6 @@ function setOngkir({
 
     setVisible("#loading_transaction", true);
     setVisible("#transaction", false);
-    console.log("jalan dahal");
 
     $.ajax({
         url: `/shipping/cost/${origin}/${destination}/${quantity}/${courier}`,
@@ -213,7 +214,6 @@ function setOngkir({
 
             setVisible("#transaction", true);
             setVisible("#loading_transaction", false);
-            console.log("end");
         },
     });
 }

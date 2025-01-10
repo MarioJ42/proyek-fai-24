@@ -25,4 +25,15 @@ class HomeController extends Controller
 
         return view("home/customers",  compact("title", "customers"));
     }
+    
+    public function supplierDashboard()
+    {
+        // dd(auth()->user()->role->name);
+        $this->authorize('is_supplier'); 
+
+        $title = "Supplier Dashboard";
+        // $data = []; 
+
+        return view("partials.home.home_suppliers", compact("title"));
+    }
 }

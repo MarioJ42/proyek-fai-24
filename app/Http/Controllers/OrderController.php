@@ -13,9 +13,8 @@ class OrderController extends Controller
     {
         $title = "Make Order";
         $product = $product;
-        $provinsi = Http::get('http://localhost:5000/list_provinsi')->object();
 
-        return view("/order/make_order", compact("title", "product", "provinsi"));
+        return view("/order/make_order", compact("title", "product"));
     }
 
 
