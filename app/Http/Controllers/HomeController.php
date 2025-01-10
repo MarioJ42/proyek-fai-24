@@ -6,6 +6,7 @@ use App\Models\{Role, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -35,5 +36,12 @@ class HomeController extends Controller
         // $data = []; 
 
         return view("partials.home.home_suppliers", compact("title"));
+    }
+
+    public function showSupplierPage()
+    {
+        $title = "Add Supplier";
+
+        return view("partials.add_suppliers", compact("title"));
     }
 }

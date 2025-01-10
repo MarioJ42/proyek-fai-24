@@ -106,4 +106,37 @@ class AuthController extends Controller
             return abort(500);
         }
     }
+
+    public function addSupplier(Request $request)
+    {
+        $validatedData = $request->validate([
+            'fullname' => 'required|max:255',
+            'username' => 'required|max:15',
+            'email' => 'required|email:rfc,dns|unique:users,email',
+            'password' => 'required|confirmed|min:4',
+            'phone' => 'required|numeric',
+            'gender' => 'required',
+            'address' => 'required',
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['image'] = env("IMAGE_PROFILE");
+        $validatedData = array_merge($validatedData, [
+            "coupon" => 0,
+            "point" => 0,
+            'remember_token' => Str::random(30),
+            'role_id' => 3
+        ]);
+        
+        try {
+            User::create($validatedData);
+            $message = "Supplier berhasil dibuat!";
+
+            myFlasherBuilder(message: $message, success: true);
+
+            return redirect()->route('admin.addSupplierForm')->with('success', 'Supplier berhasil ditambahkan!');
+        } catch (\Illuminate\Database\QueryException $exception) {
+            return abort(500);
+        }
+    }
 }
