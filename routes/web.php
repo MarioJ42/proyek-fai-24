@@ -192,6 +192,8 @@ Route::middleware(['auth', 'can:is_supplier'])->group(function () {
         // Delete
         Route::delete('/products/delete/{id}', [SupplierProductController::class, 'destroy'])->name('supplier.deleteProduct');
 
+        //history
+        Route::get('/supplier/history', [SupplierProductController::class, 'history'])->name('supplier.history');
         
     });
 });
