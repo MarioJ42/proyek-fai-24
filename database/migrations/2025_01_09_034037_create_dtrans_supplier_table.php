@@ -23,7 +23,7 @@ return new class extends Migration
 
             // Foreign key constraints
             $table->foreign('htrans_supplier_id')->references('id')->on('htrans_supplier')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products_suppliers')->onDelete('cascade');
         });
     }
 

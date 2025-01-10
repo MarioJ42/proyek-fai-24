@@ -41,7 +41,7 @@
                         <td>{{ $supplier->phone }}</td>
                         <td>{{ $supplier->address }}</td>
                         <td>
-                            <a href="" class="btn btn-primary btn-sm">
+                            <a href="{{ route('admin.supplier.products', $supplier->id) }}" class="btn btn-primary btn-sm">
                                 <i class="fa-solid fa-cart-shopping"></i> Lihat Produk
                             </a>
                         </td>
@@ -53,5 +53,3 @@
     </div>
 </div>
 @endsection
-
-{{-- {{ route('admin.supplier.products', $supplier->id) }} --}}
