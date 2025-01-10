@@ -82,7 +82,6 @@
                     <th>Nama Produk</th>
                     <th>Harga</th>
                     <th>Stok</th>
-                    <th>Diskon</th>
                     <th>Gambar</th>
                     <th>Jumlah Beli</th>
                     <th>Subtotal</th>
@@ -95,7 +94,6 @@
                     <td>{{ $product->product_name }}</td>
                     <td>Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                     <td>{{ $product->stock }}</td>
-                    <td>{{ $product->discount ?? 0 }}%</td>
                     <td>
                         <img src="{{ asset('storage/' . $product->image) }}" alt="Gambar Produk" class="img-thumbnail" style="width: 100px;">
                     </td>
