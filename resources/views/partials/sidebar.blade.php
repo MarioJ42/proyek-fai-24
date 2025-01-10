@@ -19,6 +19,10 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
                     Transaksi
                 </a>
+                <a class="nav-link" href="/transaction">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
+                    History Admin
+                </a>
 
             @elsecan("is_supplier")
                 <div class="sb-sidenav-menu-heading">Supplier</div>
@@ -31,7 +35,7 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-plus"></i></div>
                     Add Items
                 </a>
-                <a class="nav-link" href="/product">
+                <a class="nav-link" href="{{ route('supplier.history') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
                     History
                 </a>
