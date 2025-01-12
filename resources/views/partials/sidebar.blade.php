@@ -3,6 +3,7 @@
         <div class="nav">
             @can("is_admin")
                 <div class="sb-sidenav-menu-heading">Administrator</div>
+                <div class="sb-sidenav-menu-heading">Customer</div>
                 <a class="nav-link" href="/home">
                     <div class="sb-nav-link-icon"><i class="fas fa-fw fa-tachometer-alt"></i></div>
                     Dashboard
@@ -11,18 +12,20 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-fw fa-solid fa-users"></i></div>
                     Customers
                 </a>
-                <a class="nav-link" href="{{ route('admin.addSupplierForm') }}">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
-                    Add Suppliers
-                </a>
                 <a class="nav-link" href="/transaction">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
                     Transaksi
                 </a>
+                <div class="sb-sidenav-menu-heading">Supplier</div>
                 <a class="nav-link" href="{{ route('admin.suppliers') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-truck"></i></div>
                     Suppliers
                 </a>
+                <a class="nav-link" href="{{ route('admin.addSupplierForm') }}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-plus"></i></div>
+                    Add Suppliers
+                </a>
+                <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link" href="/transaction">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
                     History Admin

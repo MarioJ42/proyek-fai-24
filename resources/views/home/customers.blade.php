@@ -44,7 +44,7 @@
                         <td>{{ $row->fullname }}</td>
                         <td>{{ $row->username }}</td>
                         <td>{{ $row->email }}</td>
-                        <td>{{ $row->role->role_name }}</td>
+                        <td>{{ $row->role->role_name}}</td>
                         <td>{{ $row->gender == "M" ? "Male" : "Female" }}</td>
                         <td>{{ $row->phone }}</td>
                         <td>{{ $row->address }}</td>
