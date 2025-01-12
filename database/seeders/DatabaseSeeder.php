@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             NoteSeeder::class,
             PaymentSeeder::class,
             StatusSeeder::class,
-            CategorySeeder::class
+            CategorySeeder::class,
+            ProductSupplierSeeder::class
         ]);
     }
 }

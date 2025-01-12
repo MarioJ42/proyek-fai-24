@@ -5,6 +5,7 @@
     use App\Models\Product;
     use App\Models\ProductSupplier;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Storage;
 
     class SupplierProductController extends Controller
@@ -156,5 +157,27 @@
 
             // Redirect dengan pesan sukses
             return redirect()->route('supplier.dashboard')->with('success', 'Produk berhasil dihapus!');
+        }
+        
+        public function history()
+        {
+            // Ambil transaksi milik supplier yang sedang login
+            $transactions = DB::table('htrans_supplier')
+                ->join('dtrans_supplier', 'htrans_supplier.id', '=', 'dtrans_supplier.htrans_supplier_id')
+                ->join('products_suppliers', 'dtrans_supplier.product_id', '=', 'products_suppliers.id')
+                ->join('users as admins', 'htrans_supplier.admin_id', '=', 'admins.id')
+                ->select(
+                    'htrans_supplier.id as htrans_id',
+                    'admins.fullname as admin_name',
+                    'products_suppliers.product_name',
+                    'dtrans_supplier.quantity',
+                    'dtrans_supplier.price',
+                    DB::raw('dtrans_supplier.quantity * dtrans_supplier.price as subtotal'),
+                    'htrans_supplier.created_at'
+                )
+                ->where('products_suppliers.id_supplier', auth()->id())
+                ->orderBy('htrans_supplier.created_at', 'desc')
+                ->paginate(10);
+            return view('partials.suppliers.history-supplier', compact('transactions'));
         }
     }

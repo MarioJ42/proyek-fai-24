@@ -194,6 +194,13 @@ Route::middleware(['auth', 'can:is_supplier'])->group(function () {
         // Delete
         Route::delete('/products/delete/{id}', [SupplierProductController::class, 'destroy'])->name('supplier.deleteProduct');
 
-        
+        //history
+        Route::get('/supplier/history', [SupplierProductController::class, 'history'])->name('supplier.history');
     });
+});
+
+Route::middleware(['auth', 'can:is_admin'])->group(function () {
+    Route::get('/admin/suppliers', [HomeController::class, 'suppliers'])->name('admin.suppliers');
+    Route::get('/admin/suppliers/{id}/products', [HomeController::class, 'supplierProducts'])->name('admin.supplier.products');
+    Route::post('/admin/suppliers/products/purchase', [HomeController::class, 'purchaseProduct'])->name('admin.purchaseProduct');
 });

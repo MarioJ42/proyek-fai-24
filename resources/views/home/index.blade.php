@@ -3,6 +3,8 @@
 @push('css-dependencies')
 <link rel="stylesheet" type="text/css" href="/css/home.css" />
     @can('is_admin')
+        <!-- Include DataTables CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
         <style>
             #timezone-clocks {
                 position: fixed;
