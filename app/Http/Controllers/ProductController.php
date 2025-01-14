@@ -36,6 +36,7 @@ class ProductController extends Controller
     public function addProductPost(Request $request)
     {
         $validatedData = $request->validate([
+            "id_supplier" => "required|numeric|gt:0",
             "product_name" => "required|max:25",
             "stock" => "required|numeric|gt:0",
             "price" => "required|numeric|gt:0",

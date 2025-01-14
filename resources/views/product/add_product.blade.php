@@ -74,6 +74,17 @@
                               @enderror
                             </div>
                           </div>
+                          <div class="col-12 col-md-2 col-sm-4 mb-3" style="display: none;">
+                            <div class="form-group">
+                                <label for="id_supplier">id_supplier</label>
+                                <input class="form-control @error('id_supplier') is-invalid @enderror" type="text"
+                                    id="id_supplier" name="id_supplier" placeholder="Enter id_supplier product"
+                                    value=3>
+                                @error('id_supplier')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                          </div>
                           <div class="col-lg-12 mb-3">
                             <div class="form-group">
                               <label for="orientation">Product Orientation</label>
