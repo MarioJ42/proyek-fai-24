@@ -32,6 +32,9 @@
 @push('scripts-dependencies')
 <script src="/js/sales_chart.js"></script>
 <script src="/js/profits_chart.js"></script>
+<script src="/js/income_chart.js"></script>
+<script src="/js/outcome_chart.js"></script>
+<script src="/js/best_seller_chart.js"></script>
 @endpush
 @endcan
 

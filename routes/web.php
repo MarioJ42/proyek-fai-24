@@ -175,6 +175,61 @@ Route::middleware(['auth'])->group(function () {
 
             echo json_encode($array_result);
         });
+        // income chart
+        Route::get("/chart/income_chart", function () {
+            $six_month_ago = DB::select(DB::raw('SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 5 MONTH), "%Y-%m") AS month'))[0]->month;
+            $now = date('Y-m', time());
+            $array_result = [
+                "six_month_ago" => $six_month_ago,
+                "now" => $now,
+            ];
+
+            //disable ONLY_FULL_GROUP_BY
+            DB::statement("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+            $array_result["data"] = DB::table("transactions")
+                ->selectSub("SUM(income)", "income")
+                ->selectSub("DATE_FORMAT(transactions.created_at, '%Y-%m')", "date")
+                ->whereBetween(DB::raw("DATE_FORMAT(transactions.created_at, '%Y-%m')"), ["$six_month_ago", $now])
+                ->groupByRaw("DATE_FORMAT(transactions.created_at, '%Y-%m')")
+                ->get();
+            //re-enable ONLY_FULL_GROUP_BY
+            DB::statement("SET sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
+
+            echo json_encode($array_result);
+        });
+        // income chart
+        Route::get("/chart/outcome_chart", function () {
+            $six_month_ago = DB::select(DB::raw('SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 5 MONTH), "%Y-%m") AS month'))[0]->month;
+            $now = date('Y-m', time());
+            $array_result = [
+                "six_month_ago" => $six_month_ago,
+                "now" => $now,
+            ];
+
+            //disable ONLY_FULL_GROUP_BY
+            DB::statement("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+            $array_result["data"] = DB::table("transactions")
+                ->selectSub("SUM(outcome)", "outcome")
+                ->selectSub("DATE_FORMAT(transactions.created_at, '%Y-%m')", "date")
+                ->whereBetween(DB::raw("DATE_FORMAT(transactions.created_at, '%Y-%m')"), ["$six_month_ago", $now])
+                ->groupByRaw("DATE_FORMAT(transactions.created_at, '%Y-%m')")
+                ->get();
+            //re-enable ONLY_FULL_GROUP_BY
+            DB::statement("SET sql_mode=(SELECT CONCAT(@@sql_mode, ',ONLY_FULL_GROUP_BY'));");
+
+            echo json_encode($array_result);
+        });
+        // Best Seller chart
+        Route::get("/chart/best_seller_chart", function () {
+            $array_result["data"] = DB::table("orders")
+                ->join("products", "orders.product_id",'=','products.id')
+                ->select("products.product_name", DB::raw('SUM(orders.quantity) as qty'))
+                ->groupBy("products.product_name")
+                ->limit(5)
+                ->get();
+
+            echo json_encode($array_result);
+        });
     });
 
     // Logout
