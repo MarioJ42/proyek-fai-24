@@ -30,6 +30,18 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-fw fa-dollar-sign"></i></div>
                     History Admin
                 </a>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
+                aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-fw fa-columns"></i></div>
+                    Order
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-fw fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="/order/order_data">Order Data</a>
+                        <a class="nav-link" href="/order/order_history">Order History</a>
+                    </nav>
+                </div>
 
             @elsecan("is_supplier")
                 <div class="sb-sidenav-menu-heading">Supplier</div>
